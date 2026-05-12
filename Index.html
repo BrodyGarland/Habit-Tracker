@@ -5,35 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Habit Tracker</title>
-    <link rel="stylesheet" href="styles.css"
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-
-
-
 <body>
-    
+
     <h1>My Habit Tracker</h1>
 
+
     <section id="stats">
-        <p>Todays Completion: <span id="percentage">0%</span> </p>
+        <p>Today's Completion: <span id="percentage">0%</span></p>
     </section>
 
 
-    <section id="chart-area"?>
+    <section id="chart-area">
         <canvas id="habit-chart"></canvas>
     </section>
 
 
-    <section id="habits area">
-        <h2>Todays Habits!</h2>
+    <section id="habits-area">
+        <h2>Today's Habits!</h2>
 
-        <input type="new-habit-input" placeholder="Type a new habit...">
-        <button id="add-a-habit">Add Habit</button>
+
+        <input type="text" id="new-habit-input" placeholder="Type a new habit...">
+        <button id="add-habit-button">Add Habit</button>
         <button id="backup-button">Download Backup</button>
 
-        <ul id="habits area"></ul>
-    </section>
+        <ul id="habit-list"></ul>
 
+    </section>
 </body>
 </html>

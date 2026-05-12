@@ -1,6 +1,36 @@
 body {
-    background-color: #faf3e7;
+    
+    background-color: #e2dacd;
     font-family: 'Segoe UI', Tahoma, sans-serif;
     color: #4a3f35;
     line-height: 1.6;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    text-align: center;
+    color: #524e49;
+    margin-bottom: 30px;
+}
+
+#stats {
+    background-color: #f1ece3;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 35px;
+}
+
+#stats p {
+    font-size: 22px;
+    margin: 0;
+}
+
+#percentage {
+    font-size: 25px;
+    font-weight: bold;
+    color: #c97c5d;
 }

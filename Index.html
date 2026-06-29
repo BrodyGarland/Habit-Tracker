@@ -1,56 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Habit Tracker</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Habit Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+  <div class="app">
 
-    <h1>My Habit Tracker</h1>
+    <header class="header">
+      <div class="header-left">
+        <h1 class="app-title">Habit Tracker</h1>
+        <span class="header-date" id="header-date"></span>
+      </div>
+      <div class="streak-badge">
+        <span class="streak-fire">🔥</span>
+        <span class="streak-count" id="streak-count">0</span>
+        <span class="streak-label">day streak</span>
+      </div>
+    </header>
 
-
-    <section id="stats">
-        <p>Today's Completion: <span id="percentage">0%</span></p>
+    <section class="stats-bar">
+      <div class="stat-card">
+        <div class="stat-value accent-blue" id="today-percent">0%</div>
+        <div class="progress-bar"><div class="progress-fill" id="today-progress"></div></div>
+        <div class="stat-label">Today's Completion</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value accent-green" id="today-done">0 / 0</div>
+        <div class="progress-bar"><div class="progress-fill" id="today-done-progress"></div></div>
+        <div class="stat-label">Completed Today</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value accent-violet" id="monthly-avg">—</div>
+        <div class="progress-bar"><div class="progress-fill" id="avg-progress"></div></div>
+        <div class="stat-label">30-Day Average</div>
+      </div>
     </section>
 
-
-    <section id="chart-area">
-        <canvas id="habit-chart"></canvas>
+    <section class="chart-section">
+      <h2 class="section-title">30-Day Overview</h2>
+      <div class="chart-wrap">
+        <canvas id="chart"></canvas>
+      </div>
     </section>
 
+    <div class="main-grid">
+      <section class="panel today-panel">
+        <div class="panel-header">
+          <h2 class="panel-title">Today</h2>
+          <span class="item-count" id="today-count">0 items</span>
+        </div>
+        <ul class="habit-list" id="today-list"></ul>
+        <p class="empty-state" id="today-empty">Nothing due today — add something below!</p>
+      </section>
 
-    <section id="habits-area">
-        <h2>Today's Habits!</h2>
+      <section class="panel tomorrow-panel">
+        <div class="panel-header">
+          <h2 class="panel-title">Tomorrow <span class="preview-tag">preview</span></h2>
+          <span class="item-count" id="tomorrow-count">0 items</span>
+        </div>
+        <ul class="habit-list" id="tomorrow-list"></ul>
+        <p class="empty-state" id="tomorrow-empty">Nothing planned for tomorrow yet.</p>
+      </section>
+    </div>
 
+    <section class="panel add-panel">
+      <h2 class="panel-title">Add Item</h2>
 
-        <input type="text" id="new-habit-input" placeholder="Type a new habit...">
+      <div class="form-row">
+        <input type="text" id="habit-input" class="text-input" placeholder="Habit or task name…" maxlength="80">
+      </div>
 
-        <select id="category-select">
-            <option value="health">Health</option>
-            <option value="education">Education</option>
-            <option value="fitness">Fitness</option>
-            <option value="work">Work</option>
-            <option value="tasks">Tasks</option>    
-            <option value="other">Other</option> 
-        </select>
+      <div class="form-row">
+        <label class="form-label">Category</label>
+        <div class="pill-group" id="category-pills">
+          <button type="button" class="pill" data-category="health">Health</button>
+          <button type="button" class="pill" data-category="education">Education</button>
+          <button type="button" class="pill" data-category="fitness">Fitness</button>
+          <button type="button" class="pill" data-category="work">Work</button>
+          <button type="button" class="pill" data-category="tasks">Tasks</button>
+          <button type="button" class="pill" data-category="other">Other</button>
+        </div>
+      </div>
 
+      <div class="form-row">
+        <label class="form-label">Type</label>
+        <div class="toggle-group" id="type-toggle">
+          <button type="button" class="toggle-btn active" data-type="one-time">One-time</button>
+          <button type="button" class="toggle-btn" data-type="recurring">Recurring</button>
+        </div>
+      </div>
 
+      <div id="recurring-options" class="hidden">
+        <div class="form-row">
+          <label class="form-label">Frequency</label>
+          <div class="toggle-group" id="freq-toggle">
+            <button type="button" class="freq-btn active" data-freq="daily">Daily</button>
+            <button type="button" class="freq-btn" data-freq="weekdays">Specific Days</button>
+          </div>
+        </div>
+        <div class="form-row hidden" id="day-picker-row">
+          <label class="form-label">Days</label>
+          <div class="day-picker">
+            <button type="button" class="day-btn" data-day="0">Sun</button>
+            <button type="button" class="day-btn" data-day="1">Mon</button>
+            <button type="button" class="day-btn" data-day="2">Tue</button>
+            <button type="button" class="day-btn" data-day="3">Wed</button>
+            <button type="button" class="day-btn" data-day="4">Thu</button>
+            <button type="button" class="day-btn" data-day="5">Fri</button>
+            <button type="button" class="day-btn" data-day="6">Sat</button>
+          </div>
+        </div>
+      </div>
 
-        <button id="add-habit-button" class="button" >Add Habit</button>
-        <button id="backup-button" class="button" >Download Backup</button>
+      <div class="form-row" id="day-target-row">
+        <label class="form-label">Add to</label>
+        <div class="toggle-group" id="target-toggle">
+          <button type="button" class="target-btn active" data-target="today">Today</button>
+          <button type="button" class="target-btn" data-target="tomorrow">Tomorrow</button>
+        </div>
+      </div>
 
-        <ul id="habit-list"></ul>
-
+      <div class="form-row form-actions">
+        <button type="button" class="btn btn-primary" id="add-btn">Add Item</button>
+      </div>
     </section>
-+
 
+    <section class="panel data-panel">
+      <h2 class="panel-title">Data</h2>
+      <div class="data-actions">
+        <button type="button" class="btn btn-secondary" id="export-btn">Download Backup</button>
+        <label class="btn btn-secondary">
+          Import Backup
+          <input type="file" id="import-input" accept=".json">
+        </label>
+        <button type="button" class="btn btn-danger" id="clear-btn">Clear All Data</button>
+      </div>
+    </section>
 
-    <script src="scirpt.js"></script>
+  </div>
+
+  <div id="tooltip" class="tooltip"></div>
+  <script src="script.js"></script>
 </body>
-
 </html>
